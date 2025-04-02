@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum-Fractal Network Visualization</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Quantum-Fractal Theory Network</h1>
+            <p>Visualizing relationships between mathematical theories using quantum-fractal analysis</p>
+            
+            <div class="controls">
+                <label for="category-select">Field of Study:</label>
+                <select id="category-select">
+                    <option value="All">All</option>
+                    <!-- Categories will be populated by JavaScript -->
+                </select>
+            </div>
+        </header>
+        
+        <div class="content">
+            <div id="visualization"></div>
+            <div id="info-panel">
+                <div id="default-info">
+                    <h3>Quantum-Fractal Analysis</h3>
+                    <p>This network visualization highlights quantum-fractal relationships between mathematical theories.</p>
+                    
+                    <ul>
+                        <li><span class="highlight">Purple Nodes:</span> Theories in quantum-fractal analysis</li>
+                        <li><span class="highlight">Lavender Nodes:</span> Theories in related fields</li>
+                        <li><span class="highlight">Node Size:</span> Indicates quantum fidelity</li>
+                        <li><span class="highlight">Purple Links:</span> Strong quantum-fractal connections</li>
+                        <li><span class="highlight">Gold Border:</span> Theories that have been solved</li>
+                    </ul>
+                    
+                    <p class="small">Hover over a node to see detailed metrics. Drag nodes to rearrange the network.</p>
+                </div>
+                <div id="node-info" style="display: none;">
+                    <!-- Node information will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
