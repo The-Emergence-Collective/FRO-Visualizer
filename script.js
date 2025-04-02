@@ -23,7 +23,7 @@ async function loadData() {
       throw new Error('PapaParse library not loaded');
     }
 
-    const response = await fetch('data/benchmark_results_v4_11_2.csv');
+    const response = await fetch('./data/benchmark_results_v4_11_2.csv');
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -144,19 +144,13 @@ function createVisualization() {
     filteredData = data.filter(d => d.category === selectedCategory);
   }
   
-  // Limit to a reasonable number of nodes if needed
-  if (filteredData.length > 100) {
-    // Prioritize topology-related nodes
-    const topologyNodes = filteredData.filter(d => 
-      d.category === 'Topology' || isTopologyRelated(d.category)
-    );
-    
-    const otherNodes = filteredData
-      .filter(d => d.category !== 'Topology' && !isTopologyRelated(d.category))
-      .sort((a, b) => (b.quantum_fidelity || 0) - (a.quantum_fidelity || 0))
-      .slice(0, 70);
-      
-    filteredData = [...topologyNodes, ...otherNodes];
+  // Optimize performance for large datasets
+  if (filteredData.length > 150) {
+    // Adjust force simulation parameters for better performance
+    simulation.alphaDecay(0.02)
+             .velocityDecay(0.4)
+             .force("charge", d3.forceManyBody().strength(-100))
+             .force("collide", d3.forceCollide().radius(30));
   }
   
   // Create nodes for each mathematical problem
